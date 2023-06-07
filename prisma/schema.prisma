@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model comments {
+  id           Int       @id @default(autoincrement())
+  job_code     Int?
+  user_id      Int?
+  room_id      Int?
+  date_comment DateTime? @db.DateTime(0)
+  text_comment String?   @db.VarChar(1000)
+  rate_comment Int?
+  users        users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_1")
+  rooms        rooms?    @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_2")
+
+  @@index([room_id], map: "room_id")
+  @@index([user_id], map: "user_id")
+}
+
+model locations {
+  id            Int     @id @default(autoincrement())
+  location_name String? @db.VarChar(255)
+  city          String? @db.VarChar(100)
+  nation        String? @db.VarChar(255)
+  image         String? @db.VarChar(100)
+  rooms         rooms[]
+}
+
+model reservation {
+  id           Int       @id @default(autoincrement())
+  room_id      Int?
+  date_in      DateTime? @db.DateTime(0)
+  date_out     DateTime? @db.DateTime(0)
+  guest_number Int?
+  user_id      Int?
+  rooms        rooms?    @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "reservation_ibfk_1")
+  users        users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "reservation_ibfk_2")
+
+  @@index([room_id], map: "room_id")
+  @@index([user_id], map: "user_id")
+}
+
+model rooms {
+  id              Int           @id @default(autoincrement())
+  location_id     Int?
+  room_name       String?       @db.VarChar(255)
+  guest_number    Int?
+  bed_room        Int?
+  bed             Int?
+  bath_room       Int?
+  description     String?       @db.VarChar(1000)
+  price           Int?
+  washer          Boolean?
+  iron            Boolean?
+  television      Boolean?
+  air_conditioner Boolean?
+  wifi            Boolean?
+  kitchen         Boolean?
+  car_park        Boolean?
+  spool           Boolean?
+  flat_iron       Boolean?
+  image           String?       @db.VarChar(100)
+  user_id         Int?
+  comments        comments[]
+  reservation     reservation[]
+  users           users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rooms_ibfk_1")
+  locations       locations?    @relation(fields: [location_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rooms_ibfk_2")
+
+  @@index([location_id], map: "location_id")
+  @@index([user_id], map: "user_id")
+}
+
+model users {
+  id          Int           @id @default(autoincrement())
+  name        String?       @db.VarChar(255)
+  email       String?       @db.VarChar(255)
+  pass_word   String?       @db.VarChar(100)
+  phone       String?       @db.VarChar(20)
+  birth_day   String?       @db.VarChar(20)
+  gender      String?       @db.VarChar(20)
+  role        String?       @db.VarChar(255)
+  comments    comments[]
+  reservation reservation[]
+  rooms       rooms[]
+}
