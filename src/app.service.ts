@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+// import { Injectable } from '@nestjs/common';
+// import { users } from '@prisma/client';
 
-@Injectable()
-export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
-}
+// @Injectable()
+// export class AppService {
+//  async signUp(data: users){
+//   await 
+// }
+// }
