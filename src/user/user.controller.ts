@@ -1,16 +1,23 @@
-import { Controller, Get, Post, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, NotFoundException, Body, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { users } from '@prisma/client';
-import { models } from 'src/model/modelController';
+import { resModel } from 'src/model/resModel';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    // private config: ConfigService,
+  ) {}
   @Post()
-  async signUp(data: users) {
+  async signUp(@Body() data: users, @Res() res){
     try {
-      await models.signUp(data);
-      return data;
+      const checkData = await this.userService.signUp(data)
+      if(checkData) {
+        res.send(resModel.OK())
+      } else {
+        res.send(resModel.BAD_REQUEST())
+      }
     } catch (err) {
       throw new NotFoundException(404, 'your email or password is incorrect');
     }

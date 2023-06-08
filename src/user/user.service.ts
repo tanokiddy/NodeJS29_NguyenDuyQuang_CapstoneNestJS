@@ -1,10 +1,11 @@
+import { userModel } from './../model/userModel';
 import { Injectable } from '@nestjs/common';
-import { users } from '@prisma/client';
-import { models } from 'src/model/modelService';
+import { PrismaClient, users } from '@prisma/client';
 
 @Injectable()
 export class UserService {
-  async signUp(data: users) {
-    await models.signUp(data);
+  prisma = new PrismaClient();
+  async signUp(data: users) :Promise<false | users>{
+    return await userModel.signUp(data)
   }
 }
