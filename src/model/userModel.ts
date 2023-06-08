@@ -1,3 +1,4 @@
+import { UserLogin } from './../types/user/index';
 import { PrismaClient, users } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
@@ -22,4 +23,21 @@ export const userModel = {
       return false
     }
   },
+  login: async (data: UserLogin) => {
+    const user: users = await prisma.users.findFirst({
+      where: {
+        email: data.email
+      }
+    })
+    if(user){
+      const decodePW = await bcrypt.compare(data.pass_word.toString(), user.pass_word)
+      if(decodePW){
+        return user
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+  }
 };
