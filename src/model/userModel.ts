@@ -1,6 +1,6 @@
-import { UserLogin } from './../types/user/index';
 import { PrismaClient, users } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { UserLogin } from 'src/types/user/userOOP';
 
 const prisma = new PrismaClient();
 
