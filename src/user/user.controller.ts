@@ -4,9 +4,10 @@ import { users } from '@prisma/client';
 import { resModel } from 'src/model/resModel';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { ApiBody, ApiCookieAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { UserLogin, UserSignUp } from '../types/user/userOOP';
 import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
 
 
 @ApiTags('User')
@@ -20,7 +21,7 @@ export class UserController {
   //Sign up
   @ApiBody({type: UserSignUp})
   @Post('sign-up')
-  async signUp(@Body() data: users, @Res() res){
+  async signUp(@Body() data: users, @Res() res:Response){
     try {
       const checkData = await this.userService.signUp(data)
       if(checkData) {
@@ -35,7 +36,7 @@ export class UserController {
   //Sign in
   @ApiBody({type: UserLogin})
   @Post('sign-in')
-  async login(@Body() data: UserLogin, @Res() res) {
+  async login(@Body() data: UserLogin, @Res() res:Response) {
     try {
       const checkData = await this.userService.login(data)
       if(checkData){
@@ -54,8 +55,8 @@ export class UserController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('sign-out')
-  async signOut(@Res() res){
-    await res.clearCookie("UUID")
+  signOut(@Res() res:Response){
+    res.clearCookie("UUID")
     res.send(resModel.OK())
   }
 }

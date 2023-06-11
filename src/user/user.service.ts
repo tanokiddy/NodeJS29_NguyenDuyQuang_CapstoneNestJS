@@ -6,7 +6,7 @@ import { UserLogin } from 'src/types/user/userOOP';
 @Injectable()
 export class UserService {
   prisma = new PrismaClient();
-  async signUp(data: users) :Promise<false | users>{
+  async signUp(data: users) :Promise<null | users>{
     return await userModel.signUp(data)
   }
   async login(data: UserLogin) {

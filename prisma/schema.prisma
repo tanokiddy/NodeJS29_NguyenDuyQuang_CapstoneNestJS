@@ -28,7 +28,11 @@ model locations {
   city          String? @db.VarChar(100)
   nation        String? @db.VarChar(255)
   image         String? @db.VarChar(100)
+  user_id       Int?
+  users         users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "locations_ibfk_1")
   rooms         rooms[]
+
+  @@index([user_id], map: "user_id")
 }
 
 model reservation {
@@ -85,6 +89,7 @@ model users {
   gender      String?       @db.VarChar(20)
   role        String?       @db.VarChar(255)
   comments    comments[]
+  locations   locations[]
   reservation reservation[]
   rooms       rooms[]
 }

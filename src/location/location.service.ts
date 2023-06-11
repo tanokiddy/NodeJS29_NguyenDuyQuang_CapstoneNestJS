@@ -1,12 +1,38 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, locations } from '@prisma/client';
 import { locationModel } from 'src/model/locationModel';
-import { LocationDetail } from 'src/types/location';
+import { LocationDetail, SearchLocationQueries } from 'src/types/location';
 
 @Injectable()
 export class LocationService {
     prisma = new PrismaClient()
-    async uploadLocation(data: LocationDetail):Promise<LocationDetail | null> {
-        return await locationModel.uploadLocation(data)
+    //upload location
+    async uploadLocation(data: LocationDetail,file: Express.Multer.File):Promise<LocationDetail | null> {
+        return await locationModel.uploadLocation(data,file)
+    }
+
+    //get all location
+    async getAllLocation():Promise<LocationDetail[]>{
+        return await locationModel.getAllLocation()
+    }
+
+    //update location
+    async updateLocation(id:number, data: LocationDetail):Promise<LocationDetail>{
+        return await locationModel.updateLocationById(id, data)
+    }
+
+    //find location 
+    async findLocation(data: SearchLocationQueries):Promise<LocationDetail[]>{
+        return await locationModel.findLocationByKeyword(data)
+    }
+
+    //find location by id
+    async findLocationById(id:number):Promise<LocationDetail | null> {
+        return await locationModel.findLocationById(id)
+    }
+
+    //delete location by id
+    async deleteLocationById(id:number):Promise<locations | null> {
+        return await locationModel.deleteLocationById(id)
     }
 }

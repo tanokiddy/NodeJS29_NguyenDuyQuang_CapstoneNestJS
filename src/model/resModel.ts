@@ -9,10 +9,22 @@ export const resModel = {
       data,
     };
   },
-  BAD_REQUEST: ():ResModel => {
+  NOT_FOUND: ():ResModel => { 
+    return {
+      statusCode: HttpStatus.NOT_FOUND,
+      message: 'NOT_FOUND'
+    }
+  },
+  BAD_REQUEST_LOGIN: ():ResModel => {
     return {
       statusCode: HttpStatus.BAD_REQUEST,
       message: 'Email has been taken, please enter another email',
+    };
+  },
+  BAD_REQUEST: (message = 'BAD_REQUEST'):ResModel => {
+    return {
+      statusCode: HttpStatus.BAD_REQUEST,
+      message: message,
     };
   },
   INTERNAL_ERROR: ():ResModel => { 
