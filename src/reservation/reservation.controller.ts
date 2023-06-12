@@ -19,7 +19,7 @@ import {
 } from 'src/types/reservation/reservationOOP';
 import { Request, Response } from 'express';
 import { ReservationDetail } from 'src/types/reservation';
-import { convertDateTime, responseMessage } from 'src/utils';
+import { responseMessage } from 'src/utils';
 import { AuthGuard } from '@nestjs/passport';
 import { resModel } from 'src/model/resModel';
 

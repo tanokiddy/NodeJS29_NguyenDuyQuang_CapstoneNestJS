@@ -7,7 +7,7 @@ export class UserLogin {
     pass_word: string
 }
 
-export class UserSignUp {
+export class UserDetailClass {
     // @ApiProperty({description: 'id', type: Number })
     // id?: number
     @ApiProperty({description: 'email', type: String })
