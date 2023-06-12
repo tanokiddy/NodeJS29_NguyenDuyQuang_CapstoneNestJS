@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "42fba5ca-91ed-4d4c-8958-ae25d72b03a7",
+		"name": "NguyenDuyQuang_AirBnb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user9\",\n    \"pass_word\": 1234,\n    \"name\": \"user9\",\n    \"phone\": \"123123\",\n    \"birth_day\": \"10/10/2010\",\n    \"gender\": \"Male\",\n    \"role\": \"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/sign-up",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user1\",\n    \"pass_word\": 1234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/sign-in",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/sign-out",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"sign-out"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-users-by-keyword?pageIndex=2&orderBy=desc&pageSize=2&keyword=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-users-by-keyword"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "2"
+								},
+								{
+									"key": "orderBy",
+									"value": "desc"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								},
+								{
+									"key": "keyword",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-user-by-id/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-user-by-id",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"user9\",\n    \"email\": \"user9\",\n    \"old_pw\": \"1233\",\n    \"pass_word\": \"1234\",\n    \"phone\": \"user9\",\n    \"birth_day\": \"22/12/01\",\n    \"gender\": \"Male\",\n    \"role\": \"guest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/update-user/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"update-user",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/delete-user/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"delete-user",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "upload location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageUpload",
+									"type": "file",
+									"src": "/Users/quang/Downloads/ha-noi.jpg"
+								},
+								{
+									"key": "location_name",
+									"value": "Hanoi",
+									"type": "default"
+								},
+								{
+									"key": "city",
+									"value": "Hanoi",
+									"type": "default"
+								},
+								{
+									"key": "nation",
+									"value": "Vietnam",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/location/upload-location",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"location",
+								"upload-location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/location/get-all-location",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"location",
+								"get-all-location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageUpload",
+									"type": "file",
+									"src": "/Users/quang/Downloads/maldives.jpg"
+								},
+								{
+									"key": "location_name",
+									"value": "Maldives",
+									"type": "default"
+								},
+								{
+									"key": "nation",
+									"value": "Maldives",
+									"type": "default"
+								},
+								{
+									"key": "city",
+									"value": "Maldives",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/location/update-location/17",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"location",
+								"update-location",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/location/find-location?pageIndex=2&pageSize=2&keyword=a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"location",
+								"find-location"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "2"
+								},
+								{
+									"key": "orderBy",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								},
+								{
+									"key": "keyword",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get location by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/location/get-location/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"location",
+								"get-location",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete location by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/location/delete-location/16",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"location",
+								"delete-location",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rooms",
+			"item": [
+				{
+					"name": "upload room's information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "location_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "room_name",
+									"value": "Ha Long",
+									"type": "default"
+								},
+								{
+									"key": "guest_number",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "bed_room",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "bed",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "bath_room",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "Ha Long",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "900",
+									"type": "default"
+								},
+								{
+									"key": "washer",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "iron",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "television",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "air_conditioner",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "wifi",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "kitchen",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "car_park",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "spool",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "flat_iron",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "imageUpload",
+									"type": "file",
+									"src": "/Users/quang/Downloads/quang-ninh.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/room/add-room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"add-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find room by keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/room/find-room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"find-room"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/room/get-rooms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"get-rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update room by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "location_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "room_name",
+									"value": "Da Lat",
+									"type": "default"
+								},
+								{
+									"key": "guest_number",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "bed_room",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "bed",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "bath_room",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "Da Lat",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "1000",
+									"type": "default"
+								},
+								{
+									"key": "washer",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "iron",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "television",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "air_conditioner",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "wifi",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "kitchen",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "car_park",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "spool",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "flat_iron",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "imageUpload",
+									"type": "file",
+									"src": "/Users/quang/Downloads/da-lat.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/room/update-room/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"update-room",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get room by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/room/get-room/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"get-room",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get room by location id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/room/get-room/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"get-room",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete room by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/room/delete-room/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"room",
+								"delete-room",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservation",
+			"item": [
+				{
+					"name": "book room",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"room_id\": 8,\n    \"date_in\": \"2023-06-11T02:37:27.901Z\",\n    \"date_out\": \"2023-06-11T02:37:27.901Z\",\n    \"guest_number\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/reservation/book-room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservation",
+								"book-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update reservation by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"room_id\": 7,\n    \"date_in\": \"2023-06-11T02:37:27.901Z\",\n    \"date_out\": \"2023-06-11T02:37:27.901Z\",\n    \"guest_number\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/reservation/update-reservation/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservation",
+								"update-reservation",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reservation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/reservation/get-all-reservation",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservation",
+								"get-all-reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get reservation by user id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/reservation/get-reservation-by-user/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservation",
+								"get-reservation-by-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get reservation by room id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/reservation/get-reservation-by-room/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservation",
+								"get-reservation-by-room",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete reservation by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/reservation/delete-reservation/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservation",
+								"delete-reservation",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "add comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"job_code\": 1,\n    \"room_id\": 7,\n    \"date_comment\": \"2023-06-12T02:37:27.901Z\",\n    \"text_comment\": \"asdasdasdasd\",\n    \"rate_comment\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/comment/add-comment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"add-comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comment/get-comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"get-comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get comment by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comment/get-comment-by-user/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"get-comment-by-user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get comment by room id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comment/get-comment-by-room/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"get-comment-by-room",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"job_code\": 1,\n    \"room_id\": 7,\n    \"date_comment\": \"2023-06-12T02:37:27.901Z\",\n    \"text_comment\": \"asdasdasdasdasd\",\n    \"rate_comment\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/comment/update-comment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"update-comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comment/delete-comment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comment",
+								"delete-comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:3000",
+			"type": "default"
+		}
+	]
+}
