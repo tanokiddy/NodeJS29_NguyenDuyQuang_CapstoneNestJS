@@ -7,7 +7,7 @@ export type LocationDetail = {
     user_id?: number
 }
 
-export type SearchLocationQueries = {
+export type SearchQueries = {
     pageSize?: number
     pageIndex?: number
     keyword?: string

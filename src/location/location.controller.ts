@@ -15,14 +15,14 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { LocationService } from './location.service';
-import { LocationDetail, SearchLocationQueries } from 'src/types/location';
+import { LocationDetail, SearchQueries } from 'src/types/location';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBody, ApiConsumes, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import {
   Location,
-  LocationQueriesClass,
+  SearchQueriesClass,
 } from 'src/types/location/locationOOP';
 import { responseMessage } from 'src/utils';
 import { Request, Response } from 'express';
@@ -41,7 +41,7 @@ export class LocationController {
   @UseInterceptors(
     FileInterceptor('imageUpload', {
       storage: diskStorage({
-        destination: process.cwd() + '/public/img',
+        destination: process.cwd() + '/public/img/location',
         filename: (req, file, callback) =>
           callback(null, Date.now() + '_' + file.originalname),
       }),
@@ -78,7 +78,7 @@ export class LocationController {
   @UseInterceptors(
     FileInterceptor('imageUpload', {
       storage: diskStorage({
-        destination: process.cwd() + '/public/img',
+        destination: process.cwd() + '/public/img/location',
         filename: (req, file, callback) =>
           callback(null, Date.now() + '_' + file.originalname),
       }),
@@ -86,13 +86,16 @@ export class LocationController {
   )
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: Location })
-  @Put('update-location')
+  @ApiParam({ name: "id"})
+  @Put('update-location/:id')
   async updateLocation(
     @Req() req: Request,
     @Body() data: LocationDetail,
     @Res() res: Response,
     @UploadedFile() file: Express.Multer.File,
+    @Param() param: {id: string},
   ) {
+    const {id} = param
     const user = this.jwtService.decode(req.cookies.UUID);
     const { id: user_id } = user['data'];
     const { id: _, ...data1 } = data;
@@ -101,19 +104,19 @@ export class LocationController {
       image: file.filename,
       user_id,
     };
-    const fn = () => this.locationService.updateLocation(data.id, newData);
+    const fn = () => this.locationService.updateLocation(Number(id), newData, file);
     await responseMessage(res, fn);
   }
 
   //Find location by keyword
-  @ApiQuery({ type: LocationQueriesClass })
+  @ApiQuery({ type: SearchQueriesClass })
   @Get('find-location')
   async findLocation(
     @Res() res: Response,
-    @Query() data: SearchLocationQueries,
+    @Query() data: SearchQueries,
   ) {
     const fn = () => this.locationService.findLocation(data);
-    await responseMessage(res, fn);
+    await responseMessage(res, fn,'', resModel.NOT_FOUND());
   }
 
   // Find location by id
@@ -123,7 +126,7 @@ export class LocationController {
   @Get('get-location/:id')
   async findLocationById(@Res() res: Response, @Param() { id }) {
     const fn = () => this.locationService.findLocationById(Number(id));
-    await responseMessage(res, fn);
+    await responseMessage(res, fn,'', resModel.NOT_FOUND());
   }
 
   //Delete location by id

@@ -2,11 +2,11 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class RoomDetail {
     // @ApiProperty({description: 'id', type: Number })
-    id?: number
-    @ApiProperty({description: 'email', type: Number })
-    location_id: number
+    // id?: number
     @ApiProperty({description: 'room_name', type: String })
     room_name: string
+    @ApiProperty({description: 'email', type: Number })
+    location_id: number
     @ApiProperty({description: 'guest_number', type: Number })
     guest_number: number
     @ApiProperty({description: 'bed_room', type: Number })
@@ -15,30 +15,30 @@ export class RoomDetail {
     bed: number
     @ApiProperty({description: 'bath_room', type: Number })
     bath_room: number
-    @ApiProperty({description: 'description', type: String })
-    description: string
     @ApiProperty({description: 'price', type: Number })
     price: number
-    @ApiProperty({description: 'washer', type: Number })
-    washer: number
-    @ApiProperty({description: 'iron', type: Number })
-    iron: number
-    @ApiProperty({description: 'television', type: Number })
-    television: number
-    @ApiProperty({description: 'air_conditioner', type: Number })
-    air_conditioner: number
-    @ApiProperty({description: 'wifi', type: Number })
-    wifi: number
-    @ApiProperty({description: 'kitchen', type: Number })
-    kitchen: number
-    @ApiProperty({description: 'car_park', type: Number })
-    car_park: number
-    @ApiProperty({description: 'spool', type: Number })
-    spool: number
-    @ApiProperty({description: 'flat_iron', type: Number })
-    flat_iron: number
-    @ApiProperty({description: 'image', type: Number })
-    image: string
-    @ApiProperty({description: 'user_id', type: Number })
-    user_id: number
+    @ApiProperty({description: 'washer', type: Boolean })
+    washer: boolean
+    @ApiProperty({description: 'iron', type: Boolean })
+    iron: boolean
+    @ApiProperty({description: 'television', type: Boolean })
+    television: boolean
+    @ApiProperty({description: 'air_conditioner', type: Boolean })
+    air_conditioner: boolean
+    @ApiProperty({description: 'wifi', type: Boolean })
+    wifi: boolean
+    @ApiProperty({description: 'kitchen', type: Boolean })
+    kitchen: boolean
+    @ApiProperty({description: 'car_park', type: Boolean })
+    car_park: boolean
+    @ApiProperty({description: 'spool', type: Boolean })
+    spool: boolean
+    @ApiProperty({description: 'flat_iron', type: Boolean })
+    flat_iron: boolean
+    @ApiProperty({description: 'description', type: String })
+    description: string
+    @ApiProperty({description: 'image', format: 'binary', type: String })
+    image: any
+    // @ApiProperty({description: 'user_id', type: Number })
+    // user_id: number
 }

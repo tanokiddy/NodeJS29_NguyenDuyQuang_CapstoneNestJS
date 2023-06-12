@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class Location {
   // @ApiProperty({description: 'id', type: Number })
   // id?: number
-  @ApiProperty({ description: 'id', type: String })
+  @ApiProperty({ description: 'location_name', type: String })
   location_name: string;
   @ApiProperty({ description: 'city', type: String })
   city?: string;
@@ -13,7 +13,7 @@ export class Location {
   image?: any
 }
 
-export class LocationQueriesClass {
+export class SearchQueriesClass {
   @ApiProperty({ description: 'pageSize', type: Number, required: false })
   pageSize?: number;
   @ApiProperty({ description: 'pageIndex', type: Number, required: false })

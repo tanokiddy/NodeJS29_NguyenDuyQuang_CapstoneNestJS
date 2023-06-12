@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient, locations } from '@prisma/client';
 import { locationModel } from 'src/model/locationModel';
-import { LocationDetail, SearchLocationQueries } from 'src/types/location';
+import { LocationDetail, SearchQueries } from 'src/types/location';
 
 @Injectable()
 export class LocationService {
@@ -17,12 +17,13 @@ export class LocationService {
     }
 
     //update location
-    async updateLocation(id:number, data: LocationDetail):Promise<LocationDetail>{
-        return await locationModel.updateLocationById(id, data)
+    async updateLocation(id:number, data: LocationDetail,
+        file: Express.Multer.File):Promise<LocationDetail>{
+        return await locationModel.updateLocationById(id, data, file)
     }
 
     //find location 
-    async findLocation(data: SearchLocationQueries):Promise<LocationDetail[]>{
+    async findLocation(data: SearchQueries):Promise<LocationDetail[] | null>{
         return await locationModel.findLocationByKeyword(data)
     }
 

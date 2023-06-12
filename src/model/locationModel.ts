@@ -1,5 +1,5 @@
 import { PrismaClient, locations } from '@prisma/client';
-import { LocationDetail, SearchLocationQueries } from 'src/types/location';
+import { LocationDetail, SearchQueries } from 'src/types/location';
 import * as fs from 'fs'
 const prisma = new PrismaClient();
 
@@ -29,6 +29,7 @@ export const locationModel = {
   updateLocationById: async (
     id: number,
     newData: LocationDetail,
+    file: Express.Multer.File
   ): Promise<LocationDetail | null> => {
     const location = await prisma.locations.findFirst({
       where: {
@@ -42,8 +43,11 @@ export const locationModel = {
           id: Number(id),
         },
       });
+      const oldPath = file.path.replace(newLocation.image, location.image)
+      fs.unlinkSync(oldPath)
       return newLocation;
     } else {
+      fs.unlinkSync(file.path);
       return null;
     }
   },
@@ -53,7 +57,7 @@ export const locationModel = {
     pageSize = 5,
     keyword = '',
     orderBy = 'asc',
-  }: SearchLocationQueries): Promise<LocationDetail[] | null> => {
+  }: SearchQueries): Promise<LocationDetail[] | null> => {
     const location = prisma.locations.findMany({
       skip: (pageIndex - 1) * pageSize,
       take: Number(pageSize),
