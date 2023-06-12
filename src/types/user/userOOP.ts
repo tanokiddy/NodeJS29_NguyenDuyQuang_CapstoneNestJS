@@ -9,7 +9,7 @@ export class UserLogin {
 
 export class UserSignUp {
     // @ApiProperty({description: 'id', type: Number })
-    id?: number
+    // id?: number
     @ApiProperty({description: 'email', type: String })
     email: string
     @ApiProperty({description: 'pass_word', type: String })

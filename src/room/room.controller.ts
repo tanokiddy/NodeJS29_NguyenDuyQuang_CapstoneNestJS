@@ -10,6 +10,7 @@ import {
   Req,
   Res,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { RoomService } from './room.service';
@@ -30,6 +31,8 @@ import { RoomDetail } from 'src/types/room/roomOOP';
 import { resModel } from 'src/model/resModel';
 import { SearchQueries } from 'src/types/location';
 import { SearchQueriesClass } from 'src/types/location/locationOOP';
+import { AuthGuard } from '@nestjs/passport';
+
 @ApiTags('Room')
 @Controller('room')
 export class RoomController {
@@ -38,6 +41,7 @@ export class RoomController {
     private jwtService: JwtService,
   ) {}
   //Add room
+  @UseGuards(AuthGuard('jwt'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: RoomDetail })
   @UseInterceptors(
@@ -98,6 +102,7 @@ export class RoomController {
   }
 
   //Update room by id
+  @UseGuards(AuthGuard('jwt'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: RoomDetail })
   @ApiParam({ name: 'roomId' })
@@ -175,6 +180,7 @@ export class RoomController {
   }
 
   //Delete room by id
+  @UseGuards(AuthGuard('jwt'))
   @ApiParam({ name: 'id' })
   @Delete('delete-room/:id')
   async deleteRoomById(@Res() res: Response, @Param() param: { id: string }) {

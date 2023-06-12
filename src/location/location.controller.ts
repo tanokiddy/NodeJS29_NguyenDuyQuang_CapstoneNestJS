@@ -29,7 +29,6 @@ import { Request, Response } from 'express';
 import { resModel } from 'src/model/resModel';
 
 @ApiTags('Location')
-@UseGuards(AuthGuard('jwt'))
 @Controller('location')
 export class LocationController {
   constructor(
@@ -47,6 +46,7 @@ export class LocationController {
       }),
     }),
   )
+  @UseGuards(AuthGuard('jwt'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: Location })
   @Post('upload-location')
@@ -75,6 +75,7 @@ export class LocationController {
   }
 
   //update location
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(
     FileInterceptor('imageUpload', {
       storage: diskStorage({
@@ -130,6 +131,7 @@ export class LocationController {
   }
 
   //Delete location by id
+  @UseGuards(AuthGuard('jwt'))
   @ApiParam({
     name: "location id"
   })

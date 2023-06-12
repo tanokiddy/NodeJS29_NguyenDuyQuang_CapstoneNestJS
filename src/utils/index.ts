@@ -23,3 +23,9 @@ export const responseMessage = async (
     );
   }
 };
+
+export const convertDateTime = (data: string) => { 
+  const dateTime = new Date(data)
+  const newDateTime = dateTime.toISOString().slice(0, 19).replace('T', ' ');
+  return newDateTime
+}

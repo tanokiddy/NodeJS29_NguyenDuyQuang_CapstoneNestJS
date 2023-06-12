@@ -6,9 +6,11 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { RoomModule } from './room/room.module';
 import { LocationModule } from './location/location.module';
+import { CommentModule } from './comment/comment.module';
+import { ReservationModule } from './reservation/reservation.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, UserModule, RoomModule, LocationModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, UserModule, RoomModule, LocationModule, CommentModule, ReservationModule],
   controllers: [AppController],
   providers: [AppService],
 })
